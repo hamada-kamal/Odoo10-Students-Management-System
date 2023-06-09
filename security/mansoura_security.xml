@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mansoura_security_category" model="ir.module.category">
+            <field name="name">Mansoura Roles</field>
+        </record>
+
+        <record id="mansoura_employee" model="res.groups">
+            <field name="name">Employee</field>
+            <field name="category_id" ref="mansoura_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Employee can CRUD students only</field>
+        </record>
+
+        <record id="mansoura_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="mansoura_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Manager can CRUD students and Skills</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!--                  علشان اعرض الداتا فى شكل (list)treeاللى بشوفها اول ما ادخل -->
+        <record id="mansoura_student_tree_view" model="ir.ui.view">
+            <field name="name">mansoura student tree view</field>
+            <field name="model">mansoura.student</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+<!--                    <field name="tax"/>-->
+                    <field name="track_id"/>
+                </tree>
+            </field>
+        </record>
+<!--من خلال الكود ده بقدر اعدل فى شكل الفورمه بتاعتى واضيف الحقول-->
+        <record id="mansoura_student_form_view" model="ir.ui.view">
+            <field name="name">mansoura student form view</field>
+            <field name="model">mansoura.student</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <field name="state" widget="statusbar" clickable="True"/>-->
+                        <field name="state" widget="statusbar"/>
+                        <button string="First" name="passToFirst" type="object" states="draft"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Basic info">
+                                <field name="image" widget='image' />
+                                <field name="name"/>
+                                <field name="salary"/>
+                                <field name="phone"/>
+                                <field name="track_id" domain="[('is_open','=','True')]"/>
+                                <field name="track_is_open"/>
+                            </group>
+                            <group string="Other info">
+                                <field name="age"/>
+                                <field name="grade"/>
+                                <field name="tax"/>
+                                <field name="is_accepted"/>
+                            </group>
+                            <notebook>
+                                <page string="bio">
+                                    <field name="bio"/>
+                                    Your Skills<br/>
+                                    <field name="skills_ids" widget="many2many_tags" />
+                                </page>
+                                <page string="page 2">
+                                    <field name="cv"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mansoura_track_tree_view" model="ir.ui.view">
+            <field name="name">mansoura track tree view</field>
+            <field name="model">mansoura.track</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="is_open"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mansoura_track_form_view" model="ir.ui.view">
+            <field name="name">mansoura track form view</field>
+            <field name="model">mansoura.track</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="is_open"/>
+                            <field name="student_ids">
+                                <tree editable="top">
+                                    <field name="name"/>
+                                    <field name="age"/>
+                                    <field name="salary"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_student" model="ir.actions.act_window">
+            <field name="name">Students</field>
+            <field name="res_model">mansoura.student</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_track" model="ir.actions.act_window">
+            <field name="name">Tracks</field>
+            <field name="res_model">mansoura.track</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_skill" model="ir.actions.act_window">
+            <field name="name">Skills</field>
+            <field name="res_model">mansoura.skill</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem  id="mansoura" name="Mansoura"/>  <!--parent menu in the top beside Apps and Settings-->
+        <menuitem id="data" name="Data" parent="mansoura" />
+        <menuitem id="studnt" name="Students" parent="data" action="action_student"/>
+        <menuitem id="track" name="Tracks" parent="data" action="action_track"/>
+        <menuitem id="skills" name="Skills" parent="data" action="action_skill"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mansoura_employee,Mansoura Employee,model_mansoura_student,mansoura_employee,1,1,1,1
+access_mansoura_employee_track,Mansoura Employee Track,model_mansoura_track,mansoura_employee,1,0,0,0
+access_mansoura_employee_skill,Mansoura Employee Skill,model_mansoura_skill,mansoura_employee,1,0,0,0
+access_mansoura_manager_track,Mansoura Manager Track,model_mansoura_track,mansoura_manager,1,1,1,1
+access_mansoura_manager_skill,Mansoura Manager Skill,model_mansoura_skill,mansoura_manager,1,1,1,1
